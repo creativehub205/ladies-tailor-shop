@@ -1,8 +1,7 @@
 export const getLocalIP = () => {
-  // Replace with YOUR actual IP address from ipconfig
-  // For testing on same computer, use 'localhost'
-  // For mobile testing, use your computer's IP address
-  return '10.221.169.66';
+  // Replace with your ngrok URL or deployed backend URL
+  // Example: 'your-ngrok-url.ngrok.io'
+  return '10.221.169.66'; // Use your local IP if backend is on same network
 };
 
 export const API_BASE_URL = `http://${getLocalIP()}:3000/api`;
