@@ -8,12 +8,12 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 5000;
 const JWT_SECRET = 'your-secret-key';
 
 // Enable CORS for all origins
 app.use(cors({
-  origin: ['http://localhost:19006', 'http://10.30.122.67:19006', 'exp://10.30.122.67:19000', '*'],
+  origin: '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -38,7 +38,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-const db = new sqlite3.Database('tailor_shop.db');
+const dbPath = path.join(__dirname, 'tailor_shop.db');
+const db = new sqlite3.Database(dbPath);
 
 db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS tailors (
@@ -1032,6 +1033,6 @@ app.post('/api/orders/:id/measurements', authenticateToken, (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Backend running on port ${PORT}`);
 });

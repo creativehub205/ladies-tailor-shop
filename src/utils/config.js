@@ -1,9 +1,9 @@
 export const getLocalIP = () => {
-  // Replace with your ngrok URL or deployed backend URL
-  // Example: 'your-ngrok-url.ngrok.io'
-  return '10.221.169.66'; // Use your local IP if backend is on same network
+  // Replace with your deployed backend URL from Render/Heroku/etc
+  // Example: 'ladies-tailor-backend.onrender.com'
+  return 'https://ladies-tailor-shop.onrender.com'; // Replace with your actual deployed URL
 };
 
-export const API_BASE_URL = `http://${getLocalIP()}:3000/api`;
+export const API_BASE_URL = `https://${getLocalIP()}/api`;
 
-export const UPLOADS_URL = `http://${getLocalIP()}:3000/uploads`;
+export const UPLOADS_URL = `https://${getLocalIP()}/uploads`;
